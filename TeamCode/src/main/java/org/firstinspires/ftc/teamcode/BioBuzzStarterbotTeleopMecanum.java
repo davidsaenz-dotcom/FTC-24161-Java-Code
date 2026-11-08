@@ -106,9 +106,9 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         );
         launcher.setVelocity(0);
 
-        leftIntakeServo.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightIntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
-        windmillServo.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftIntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightIntakeServo.setDirection(DcMotorSimple.Direction.FORWARD);
+        windmillServo.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftIntakeServo.setPower(0);
         rightIntakeServo.setPower(0);
@@ -122,13 +122,13 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     public void loop() {
         // Left stick: drive and strafe. Right stick: turn.
         mecanumDrive(
-                -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
+                -gamepad1.left_stick_x,
+                gamepad1.left_stick_y,
                 gamepad1.right_stick_x
         );
 
         double intakePower =
-                gamepad1.right_trigger - gamepad1.left_trigger;
+                gamepad1.left_trigger - gamepad1.right_trigger;
 
         // Hold right bumper to spin the launcher.
         boolean launcherOn = gamepad1.right_bumper;
@@ -150,7 +150,7 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         windmillServo.setPower(feed ? 1.0 : 0.0);
 
         if (feed) {
-            intakePower += 0.5;
+            intakePower -= 0.5;
         }
 
         intakePower = Math.max(-1.0, Math.min(1.0, intakePower));
@@ -192,9 +192,9 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
         leftFrontPower =
                 (forward + strafe + rotate) / denominator * speed;
         rightFrontPower =
-                (forward - strafe - rotate) / denominator * speed;
-        leftBackPower =
                 (forward - strafe + rotate) / denominator * speed;
+        leftBackPower =
+                (forward - strafe - rotate) / denominator * speed;
         rightBackPower =
                 (forward + strafe - rotate) / denominator * speed;
 
