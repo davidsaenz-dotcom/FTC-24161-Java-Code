@@ -46,8 +46,8 @@ public class BioBuzzStarterbotTeleopMecanum extends OpMode {
     private CRServo rightIntakeServo;
     private CRServo windmillServo;
 
-    private static final double LAUNCHER_TARGET_VELOCITY = 1250;
-    private static final double LAUNCHER_MIN_VELOCITY = 1200;
+    private static final double LAUNCHER_TARGET_VELOCITY = 1380;
+    private static final double LAUNCHER_MIN_VELOCITY = 1360;
 
     private double leftFrontPower;
     private double rightFrontPower;
